@@ -6,8 +6,6 @@ description: > # this means to ignore newlines until "baseurl:"
   MBassador together with microservices.
 baseurl: "/microservices-eventbus/" # the subpath of your site, e.g. /blog/
 url: "http://sebivenlo.github.io/" # the base hostname & protocol for your site
-twitter_username: tweetmyreality
-github_username:  MyRealityCoding
 
 # Build settings
 markdown: kramdown
