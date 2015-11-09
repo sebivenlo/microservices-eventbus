@@ -185,6 +185,14 @@ pre {
 }
 
 
+.table {
+  display: table;
+  .table-cell {
+    display: table-cell;
+  }
+}
+
+
 
 /**
  * Icons

@@ -188,17 +188,8 @@
     font-size: 24px;
 }
 
-
-
-/**
- * Posts
- */
-.post-header {
-    margin-bottom: $spacing-unit;
-}
-
 .post-title {
-    font-size: 42px;
+    font-size: 32px;
     letter-spacing: -1px;
     line-height: 1;
 
@@ -233,4 +224,28 @@
             font-size: 18px;
         }
     }
+}
+
+.sidebar {
+  margin: 0;
+  margin-right: 20px;
+  border-radius: 5px;
+  list-style: none;
+  padding: 15px;
+  background-color: #eee;
+  li {
+    border-radius: 5px;
+    line-height: 30px;
+    padding: 0 10px;
+    &:hover {
+      background-color: #e5e5e5;
+    }
+  }
+  a {
+    font-size: 16px;
+    &:hover {
+      text-decoration: none;
+      color: lighten(#1756a9, 20%);
+    }
+  }
 }

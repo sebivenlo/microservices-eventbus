@@ -9,7 +9,20 @@
 
     <div class="page-content">
       <div class="wrapper">
-        {{ content }}
+        <div class="table">
+          <div class="table-cell">
+            <ul class="sidebar">
+              {% for tutorial in site.tutorials %}
+                <li>
+                    <a class="post-link" href="{{ tutorial.url | prepend: site.baseurl }}">{{ forloop.index }}. {{ tutorial.title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="table-cell">
+            {{ content }}
+          </div>
+        </div>
       </div>
     </div>
 
