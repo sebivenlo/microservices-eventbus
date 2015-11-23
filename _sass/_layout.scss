@@ -227,7 +227,7 @@
 }
 
 a {
-  &:visited { color: $brand-color; }  
+  &:visited { color: $brand-color; }
   &:hover {
     text-decoration: none;
     color: darken($brand-color, 6%);
