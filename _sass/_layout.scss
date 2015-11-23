@@ -226,6 +226,14 @@
     }
 }
 
+a {
+  &:visited { color: $brand-color; }  
+  &:hover {
+    text-decoration: none;
+    color: darken($brand-color, 6%);
+  }
+}
+
 .sidebar {
   margin: 0;
   margin-right: 20px;
@@ -244,9 +252,5 @@
   a {
     white-space: nowrap;
     font-size: 16px;
-    &:hover {
-      text-decoration: none;
-      color: lighten($brand-color, 20%);
-    }
   }
 }
