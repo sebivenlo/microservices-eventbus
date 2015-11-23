@@ -12,9 +12,10 @@
         <div class="table">
           <div class="table-cell">
             <ul class="sidebar">
+              <li><a class="post-link" href="/">1. Introduction</a></li>
               {% for tutorial in site.tutorials %}
                 <li>
-                    <a class="post-link" href="{{ tutorial.url | prepend: site.baseurl }}">{{ forloop.index }}. {{ tutorial.title }}</a>
+                    <a class="post-link" href="{{ tutorial.url | prepend: site.baseurl }}">{{ forloop.index + 1 }}. {{ tutorial.title }}</a>
                 </li>
               {% endfor %}
             </ul>
