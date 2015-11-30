@@ -255,3 +255,29 @@ a {
     font-size: 16px;
   }
 }
+
+.hint {
+  border-radius: 5px;
+  padding: 10px;
+  padding-left: 20px;
+  margin: 10px 0;
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+  & > i { margin-right: 5px; }
+  &.info {
+    background-color: #5988c9;
+  }
+  &.warning {
+    background-color: #de5a4c;
+  }
+  &.cite {
+    font-weight: normal;
+    font-style: italic;
+    color: #aaa;
+    background-color: #eee;
+    font-size: 24px;
+    padding: 15px;
+    padding-left: 25px;
+  }
+}
