@@ -5,6 +5,9 @@ title: What are Microservices?
 # What we got until now
 Most applications are developed as a monolithic application, especially bigger enterprise systems. This has several reasons, most IDEs are build to handle monolithic applications. Also this is easy to deploy since you only have one application. They are easy to test using front end tests through the UI.
 
+![alt text](http://bits.citrusbyte.com/images/posts/2015-08-24-microservices-monolith.png "Monolithc Application")
+[Imagesource] (http://bits.citrusbyte.com/images/posts/2015-08-24-microservices-monolith.png)
+
 But this approach imposes some problems:
 
 - Harder for new developers to understand
@@ -18,6 +21,9 @@ But this approach imposes some problems:
 
 # What can we do against it
 A new popular aproach is the microservices pattern. Basically you defide your applications into several small interconnected services that all handle one part of your application. This style of developing Platforms is used by some of the biggest companys on the internet like Netflix, Amazon or Ebay. Every microservices exposes an API that is consumed by the other services if they need information from this service or want to interact with it.
+
+![alt text](http://bits.citrusbyte.com/images/posts/2015-08-24-microservices-architecture.png "Microservice Application")
+[Imagesource](http://bits.citrusbyte.com/images/posts/2015-08-24-microservices-architecture.png)
 
 The Miroservice pattern significally impacts the way data is stored inside of the application. Instead of one big database that contains all data, each service has its own database, they can also have different databaseschema or database types. This therfore often results in some data dupplication, but its essential to ensure loose coupling.
 
