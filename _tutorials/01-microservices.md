@@ -44,3 +44,7 @@ Since there are no silver bullets there are also drawbacks:
 - Changes across multiple services are complex and need to be planned carefully
 - Depolyment is more complex, since you need to loadbalance the services or create an gateway through which the services are accesed
 - Service discovery needs to solved, so each service knows where to reach the others
+
+# Next up: case study
+
+Go to the next chapter [right here](/tutorials/02-casestudy)!
