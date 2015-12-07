@@ -114,4 +114,37 @@ public class KitchenService {
     }
 }
 {% endhighlight %}
-Now the ```KitchenService``` class also depends on the ```OrderService``` 
+Now the ```KitchenService``` class also depends on the ```OrderService```
+
+The last step to complete our restaurant is to add the ```PaymentService``` to everything. The Payment service needs to get informed everytime an order is served. After the waiter served the order, the restaurant gets payed and the ```PaymentService``` pays our empolyees.
+
+Lets first implement the ```PaymentService```:
+
+{% highlight java %}
+package nl.fontys.demo.services;
+
+public class PaymentService {
+
+    private OrderService orderService;
+
+    private KitchenSevice kitchenService;
+
+    public PaymentService(OrderService orderService, KitchenSevice kitchenService) {
+        this.orderService = orderService;
+        this.kitchenService = kitchenService;
+    }
+    public void payMeal(String meal, float ammount) {
+        System.out.println("Payment received for meal: " + meal + " for: "+ ammount +"$");
+        paySalary(ammount);
+    }
+
+    private void paySalary(float dollars) {
+        System.out.println("Paying Kitchen " + dollars + " sallary.");
+        kitchenService.receiveSalary(dollars);
+        System.out.println("Paying Waiter " + dollars + " sallary.");
+        orderService.receiveSalary(dollars);
+    }
+}
+{% endhighlight %}
+
+Now everytime an meal is delivered and payed, the kitchen and waiter get payed. This is a very simple implementation for demo purposes and doesn't reflect a real business workflow.
