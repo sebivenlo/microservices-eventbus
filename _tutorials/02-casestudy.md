@@ -176,3 +176,11 @@ public class Application {
     }
 }
 {% endhighlight %}
+This looks good, doesn't it? Well, in fact here are some issues already with this example implementation above:
+
+* a lot of dependencies already: only 3 services and all must be setup correctly
+* what when adding new services to the application? We would need to rewrite all services to add compability
+* the example above requires initialization ordering: when creating objects too late, ```NullPointerException``` may occur
+
+How to solve those issues? Take a look into the next chapter <a href="{{ "/tutorials/03-dependencies" | prepend: site.baseurl }}">here</a>!
+
