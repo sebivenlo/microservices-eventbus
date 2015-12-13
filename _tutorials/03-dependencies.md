@@ -47,7 +47,7 @@ Each event has a so called ```type``` as well as a list of arguments (optional).
 
 ### The event bus
 
-To use such events we need to distribute them. The distribution of events is done by a so called **Event Bus** handler. MBassador itself provides an event bus implementation. Since we want
+To use such events we need to distribute them. The distribution of events is done by a so called **Event Bus** handler. Mbassador itself provides an event bus implementation. Since we want
 to ease the process we make it [Singleton](https://en.wikipedia.org/wiki/Singleton_pattern) and wrap it into a ```EventBus``` class:
 {% highlight java %}
 package nl.fontys.demo.events;
@@ -83,3 +83,30 @@ public final class EventBus {
 {% endhighlight %}
 
 By calling ```subscribe``` we are able to subscribe (listen) to changes which are sent through the bus. To publish a new event we can call the ```publish``` method. In our case the publication of the event is synchronous and single-threaded. *Mbassador* provides also options for asynchronous event distribution, which is very interesting in terms of high performance applications.
+
+### Event types
+
+By just having events it is hard to see which event holds which kind of information. Each event type may come with an individual size of arguments. To solve the issue we need event types. In our case event types are just of type ```java.lang.String```. Create a new class, called ```EventType``` and add the following:
+{% highlight java %}
+package nl.fontys.demo.events;
+
+public class EventType {
+    public static final String MEAL_COOKED = "meal_cooked";
+    public static final String MEAL_DELIVERED = "meal_delivered";
+    public static final String MEAL_ORDERED = "meal_ordered";
+    public static final String KITCHEN_SALARY_SENT = "kitchen_salary_sent";
+    public static final String ORDER_SALARY_SENT = "order_salary_sent";
+}
+{% endhighlight %}
+As you can see for each event which may occur there is an own type:
+* ```MEAL_COOKED```: is called after a meal has been cooked by the kitchen AND is ready to get fetched by a waiter
+* ```MEAL_DELIVERED```: is called after a meal has been delivered to a customer by the order service
+* ```MEAL_ORDERED```: is called after a meal has been ordered
+* ```KITCHEN_SALARY_SENT```: is called when the payment service has sent the salary for the kitchen staff
+* ```ORDER_SALARY_SENT```: is called when the payment service has sent the salary for the waiter staff
+
+Now it is up to us to rewrite our services to take advantage of the power of event buses!
+
+### Rewrite everything!
+
+todo
