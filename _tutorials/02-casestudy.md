@@ -11,7 +11,7 @@ The **order service** receives orders and informs the **kitchen service** to coo
 
 If you haven't [downloaded the initial demo project](https://github.com/sebivenlo/microservices-eventbus/archive/5aeaa8b0b936b6778d9b337cf7e577504354d417.zip) yet, do it now. In the package ```nl.fontys.demo``` create a new package, called ```services```. In this package, create a new Java class, called ```KitchenService```:
 
-```java
+{% highlight java %}
 package nl.fontys.demo.services;
 
 public class KitchenService {
@@ -24,7 +24,7 @@ public class KitchenService {
         System.out.println("Cooking meal " + meal);
     }
 }
-```
+{% endhighlight %}
 
 The kitchen service has to methods: one to receive salary of a certain amount and one method to cook a given meal.
 
@@ -32,7 +32,7 @@ The kitchen service has to methods: one to receive salary of a certain amount an
 
 Create now another class in the ```nl.fontys.demo.services``` package, called ```OrderService```:
 
-```java
+{% highlight java %}
 package nl.fontys.demo.services;
 
 import java.util.ArrayList;
@@ -76,9 +76,9 @@ public class OrderService {
         orders.clear();
     }
 }
-```
+{% endhighlight %}
 This service is a little bit more complex. It needs a kitchen service to inform it when needed. Also it is able to receive multiple orders and send them all at once to the kitchen. It is also able to receive cooked meals to bring them to the customer. Now we have a first problem: due to a dependency between ```KitchenService``` and ```OrderService``` the kitchen service needs to inform the order service when a meal is ready. Let us tweak the ```KitchenService``` code a little bit:
-```java
+{% highlight java %}
 package nl.fontys.demo.services;
 
 import java.util.ArrayList;
@@ -113,14 +113,14 @@ public class KitchenService {
         }
     }
 }
-```
+{% endhighlight %}
 Now the ```KitchenService``` class also depends on the ```OrderService```
 
 The last step to complete our restaurant is to add the ```PaymentService``` to everything. The Payment service needs to get informed everytime an order is served. After the waiter served the order, the restaurant gets payed and the ```PaymentService``` pays our empolyees.
 
 Lets first implement the ```PaymentService```:
 
-```java
+{% highlight java %}
 package nl.fontys.demo.services;
 
 public class PaymentService {
@@ -145,14 +145,14 @@ public class PaymentService {
         orderService.receiveSalary(dollars);
     }
 }
-```
+{% endhighlight %}
 
 Now everytime an meal is delivered and payed, the kitchen and waiter get payed. This is a very simple implementation for demo purposes and doesn't reflect a real business workflow.
 
 ### Wrap everything together
 
 After we setup all services it is time to create our first application. This simple Java application will setup all services and process some orders. Create a new class, called `Application``` and create a main method:
-```java
+{% highlight java %}
 public class Application {
 
     public static void main(String[] args) {        
@@ -175,4 +175,4 @@ public class Application {
         paymentService.paySalary(500);
     }
 }
-```
+{% endhighlight %}
