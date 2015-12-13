@@ -17,9 +17,6 @@ public class Application {
         OrderService orderService = new OrderService();
         KitchenService kitchenService = new KitchenService();
         PaymentService paymentService = new PaymentService();
-        orderService.setup(kitchenService, paymentService);
-        kitchenService.setup(orderService);
-        paymentService.setup(orderService, kitchenService);
         // Add some orders
         orderService.addOrder("Soup");
         orderService.addOrder("Bread");

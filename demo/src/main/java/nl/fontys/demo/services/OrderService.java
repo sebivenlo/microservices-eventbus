@@ -2,20 +2,30 @@ package nl.fontys.demo.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import net.engio.mbassy.listener.Handler;
+import nl.fontys.demo.events.Event;
+import nl.fontys.demo.events.EventBus;
+import nl.fontys.demo.events.EventType;
 
 public class OrderService {
 
     private List<String> orders = new ArrayList<String>();
     
     private List<String> meals = new ArrayList<String>();
-
-    private KitchenService kitchenService;
     
-    private PaymentService paymentService;
+    private EventBus bus = EventBus.getInstance();
     
-    public void setup(KitchenService kitchenService, PaymentService paymentService) {
-        this.kitchenService = kitchenService;
-        this.paymentService = paymentService;
+    public OrderService() {
+        bus.subscribe(this);
+    }
+    
+    @Handler
+    public void onEvent(Event event) {
+        if (event.isTypeOf(EventType.ORDER_SALARY_SENT)) {
+            receiveSalary((Float)event.getArgument(0));
+        } else if (event.isTypeOf(EventType.MEAL_COOKED)) {
+            receiveMeal((String)event.getArgument(0));
+        }
     }
 
     public void addOrder(String orderedMeal) {
@@ -34,7 +44,7 @@ public class OrderService {
         if (meals.size() > 0) {
             for (String meal : meals) {
                 System.out.println("Deliver meal to customer: " + meal);
-                paymentService.payMeal(meal, 1);
+                bus.publish(new Event(EventType.MEAL_DELIVERED, meal));
             }
             meals.clear();
         } else {
@@ -44,7 +54,7 @@ public class OrderService {
 
     public void sendOrders() {
         for (String order : orders) {
-            kitchenService.cookMeal(order);
+            bus.publish(new Event(EventType.MEAL_ORDERED, order));
         }
         orders.clear();
     }

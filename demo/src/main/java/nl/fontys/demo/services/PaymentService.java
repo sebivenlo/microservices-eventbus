@@ -5,24 +5,24 @@
  */
 package nl.fontys.demo.services;
 
+import nl.fontys.demo.events.Event;
+import nl.fontys.demo.events.EventBus;
+import nl.fontys.demo.events.EventType;
+
 public class PaymentService {
-
-    private OrderService orderService;
-
-    private KitchenService kitchenService;
-
-    public void setup(OrderService orderService, KitchenService kitchenService) {
-        this.orderService = orderService;
-        this.kitchenService = kitchenService;
+    
+    private EventBus bus = EventBus.getInstance();
+    
+    public PaymentService() {
+        bus.subscribe(this);
     }
+
     public void payMeal(String meal, float ammount) {
         System.out.println("Payment received for meal: " + meal + " for: "+ ammount +"$");
     }
 
     public void paySalary(float dollars) {
-        System.out.println("Paying Kitchen " + dollars + " sallary.");
-        kitchenService.receiveSalary(dollars);
-        System.out.println("Paying Waiter " + dollars + " sallary.");
-        orderService.receiveSalary(dollars);
+        bus.publish(new Event(EventType.KITCHEN_SALARY_SENT, dollars));
+        bus.publish(new Event(EventType.ORDER_SALARY_SENT, dollars));
     }
 }
