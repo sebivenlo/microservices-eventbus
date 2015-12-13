@@ -5,6 +5,7 @@
  */
 package nl.fontys.demo.services;
 
+import net.engio.mbassy.listener.Handler;
 import nl.fontys.demo.events.Event;
 import nl.fontys.demo.events.EventBus;
 import nl.fontys.demo.events.EventType;
@@ -15,6 +16,13 @@ public class PaymentService {
     
     public PaymentService() {
         bus.subscribe(this);
+    }
+    
+    @Handler
+    public void onEvent(Event event) {
+        if (event.isTypeOf(EventType.MEAL_DELIVERED)) {
+            payMeal((String)event.getArgument(0), 1);
+        }
     }
 
     public void payMeal(String meal, float ammount) {
