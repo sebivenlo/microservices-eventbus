@@ -2,6 +2,7 @@ package nl.fontys.demo;
 
 import nl.fontys.demo.services.KitchenService;
 import nl.fontys.demo.services.OrderService;
+import nl.fontys.demo.services.PaymentService;
 
 /**
  * Application to run the demo
@@ -15,8 +16,10 @@ public class Application {
         // Setup all services
         OrderService orderService = new OrderService();
         KitchenService kitchenService = new KitchenService();
-        orderService.setup(kitchenService);
+        PaymentService paymentService = new PaymentService();
+        orderService.setup(kitchenService, paymentService);
         kitchenService.setup(orderService);
+        paymentService.setup(orderService, kitchenService);
         // Add some orders
         orderService.addOrder("Soup");
         orderService.addOrder("Bread");
@@ -25,5 +28,7 @@ public class Application {
         orderService.sendOrders();
         // Deliver all cooked meals
         orderService.deliverMeals();
+        // Let us pay our employees
+        paymentService.paySalary(500);
     }
 }

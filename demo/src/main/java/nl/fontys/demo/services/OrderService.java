@@ -11,8 +11,11 @@ public class OrderService {
 
     private KitchenService kitchenService;
     
-    public void setup(KitchenService kitchenService) {
+    private PaymentService paymentService;
+    
+    public void setup(KitchenService kitchenService, PaymentService paymentService) {
         this.kitchenService = kitchenService;
+        this.paymentService = paymentService;
     }
 
     public void addOrder(String orderedMeal) {
@@ -23,10 +26,15 @@ public class OrderService {
         meals.add(meal);
     }
     
+    public void receiveSalary(float dollars) {
+        System.out.println("Order service received " + dollars + " sallary.");
+    }
+    
     public void deliverMeals() {
         if (meals.size() > 0) {
             for (String meal : meals) {
                 System.out.println("Deliver meal to customer: " + meal);
+                paymentService.payMeal(meal, 1);
             }
             meals.clear();
         } else {
