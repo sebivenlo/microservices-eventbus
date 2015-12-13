@@ -108,6 +108,179 @@ As you can see for each event which may occur there is an own type:
 
 Now it is up to us to rewrite our services to take advantage of the power of event buses!
 
-### Rewrite everything!
+### Rewrite the order service
 
-todo
+First of all, we remove all dependencies (via setup method) from our services. Then we fetch the singleton instance of the event bus, subscribe to it and listen to event calls by creating a method annotated via ```@Handler```:
+{% highlight java %}
+package nl.fontys.demo.services;
+
+import java.util.ArrayList;
+import java.util.List;
+import net.engio.mbassy.listener.Handler;
+import nl.fontys.demo.events.Event;
+import nl.fontys.demo.events.EventBus;
+import nl.fontys.demo.events.EventType;
+
+public class OrderService {
+
+    private List<String> orders = new ArrayList<String>();
+
+    private List<String> meals = new ArrayList<String>();
+
+    private EventBus bus = EventBus.getInstance();
+
+    public OrderService() {
+        bus.subscribe(this);
+    }
+
+    @Handler
+    public void onEvent(Event event) {
+        if (event.isTypeOf(EventType.ORDER_SALARY_SENT)) {
+            receiveSalary((Float)event.getArgument(0));
+        } else if (event.isTypeOf(EventType.MEAL_COOKED)) {
+            receiveMeal((String)event.getArgument(0));
+        }
+    }
+
+    public void addOrder(String orderedMeal) {
+        orders.add(orderedMeal);
+    }
+
+    public void receiveMeal(String meal) {
+        meals.add(meal);
+    }
+
+    public void receiveSalary(float dollars) {
+        System.out.println("Order service received " + dollars + " sallary.");
+    }
+
+    public void deliverMeals() {
+        if (meals.size() > 0) {
+            for (String meal : meals) {
+                System.out.println("Deliver meal to customer: " + meal);
+                bus.publish(new Event(EventType.MEAL_DELIVERED, meal));
+            }
+            meals.clear();
+        } else {
+            System.out.println("Could not deliver any meals. No meals available!");
+        }
+    }
+
+    public void sendOrders() {
+        for (String order : orders) {
+            bus.publish(new Event(EventType.MEAL_ORDERED, order));
+        }
+        orders.clear();
+    }
+}
+{% endhighlight %}
+
+As you may notice already the service does not have any dependency of other services anymore!
+
+### Rewrite the kitchen service
+
+Let us do the same for the kitchen service:
+{% highlight java %}
+package nl.fontys.demo.services;
+
+import net.engio.mbassy.listener.Handler;
+import nl.fontys.demo.events.Event;
+import nl.fontys.demo.events.EventBus;
+import nl.fontys.demo.events.EventType;
+
+public class PaymentService {
+
+    private EventBus bus = EventBus.getInstance();
+
+    public PaymentService() {
+        bus.subscribe(this);
+    }
+
+    @Handler
+    public void onEvent(Event event) {
+        if (event.isTypeOf(EventType.MEAL_DELIVERED)) {
+            payMeal((String)event.getArgument(0), 1);
+        }
+    }
+
+    public void payMeal(String meal, float ammount) {
+        System.out.println("Payment received for meal: " + meal + " for: "+ ammount +"$");
+    }
+
+    public void paySalary(float dollars) {
+        bus.publish(new Event(EventType.KITCHEN_SALARY_SENT, dollars));
+        bus.publish(new Event(EventType.ORDER_SALARY_SENT, dollars));
+    }
+}
+{% endhighlight %}
+
+### Rewrite the payment service
+
+And for the payment service:
+{% highlight java %}
+package nl.fontys.demo.services;
+
+import net.engio.mbassy.listener.Handler;
+import nl.fontys.demo.events.Event;
+import nl.fontys.demo.events.EventBus;
+import nl.fontys.demo.events.EventType;
+
+public class PaymentService {
+
+    private EventBus bus = EventBus.getInstance();
+
+    public PaymentService() {
+        bus.subscribe(this);
+    }
+
+    @Handler
+    public void onEvent(Event event) {
+        if (event.isTypeOf(EventType.MEAL_DELIVERED)) {
+            payMeal((String)event.getArgument(0), 1);
+        }
+    }
+
+    public void payMeal(String meal, float ammount) {
+        System.out.println("Payment received for meal: " + meal + " for: "+ ammount +"$");
+    }
+
+    public void paySalary(float dollars) {
+        bus.publish(new Event(EventType.KITCHEN_SALARY_SENT, dollars));
+        bus.publish(new Event(EventType.ORDER_SALARY_SENT, dollars));
+    }
+}
+{% endhighlight %}
+
+### Changing the base Application
+
+Now all dependencies are gone between the services. This means that we can create as many services as we want and they will work completely independently without knowing about the others. As you may have noticed already: we only fire events after something has happened. We never react with an event. This is very important to avoid string coupling and create responsibility at the wrong place.
+
+Let us move on with the application code:
+{% highlight java %}
+package nl.fontys.demo;
+
+import nl.fontys.demo.services.KitchenService;
+import nl.fontys.demo.services.OrderService;
+import nl.fontys.demo.services.PaymentService;
+
+public class Application {
+
+    public static void main(String[] args) {        
+        // Setup all services
+        OrderService orderService = new OrderService();
+        KitchenService kitchenService = new KitchenService();
+        PaymentService paymentService = new PaymentService();
+        // Add some orders
+        orderService.addOrder("Soup");
+        orderService.addOrder("Bread");
+        orderService.addOrder("Steak");
+        // Send orders to the kitchen
+        orderService.sendOrders();
+        // Deliver all cooked meals
+        orderService.deliverMeals();
+        // Let us pay our employees
+        paymentService.paySalary(500);
+    }
+}
+{% endhighlight %}
+The result is the same! From the API side of view those services are far easier to use now. Of course this example is very rough and simple, but imagine an architecture with hundreds of services. This way avoids dependency hassle and creates a clean structure.
