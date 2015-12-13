@@ -47,4 +47,4 @@ Since there are no silver bullets there are also drawbacks:
 
 # Next up: case study
 
-Go to the next chapter [right here](/tutorials/02-casestudy)!
+Go to the next chapter <a href="{{ "/tutorials/02-casestudy" | prepend: site.baseurl }}">here</a>!
