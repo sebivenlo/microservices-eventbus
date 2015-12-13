@@ -99,6 +99,7 @@ public class EventType {
 }
 {% endhighlight %}
 As you can see for each event which may occur there is an own type:
+
 * ```MEAL_COOKED```: is called after a meal has been cooked by the kitchen AND is ready to get fetched by a waiter
 * ```MEAL_DELIVERED```: is called after a meal has been delivered to a customer by the order service
 * ```MEAL_ORDERED```: is called after a meal has been ordered
