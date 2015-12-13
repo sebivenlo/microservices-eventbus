@@ -151,7 +151,7 @@ Now everytime an meal is delivered and payed, the kitchen and waiter get payed. 
 
 ### Wrap everything together
 
-After we setup all services it is time to create our first application. This simple Java application will setup all services and process some orders. Create a new class, called `Application``` and create a main method:
+After we setup all services it is time to create our first application. This simple Java application will setup all services and process some orders. Create a new class, called ```Application``` and create a main method:
 {% highlight java %}
 public class Application {
 
