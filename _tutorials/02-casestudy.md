@@ -9,7 +9,7 @@ The **order service** receives orders and informs the **kitchen service** to coo
 
 ### The kitchen service
 
-If you haven't [downloaded the initial demo project](https://github.com/sebivenlo/microservices-eventbus/archive/demo.zip) yet, do it now. In the package ```nl.fontys.demo``` create a new package, called ```services```. In this package, create a new Java class, called ```KitchenService```:
+If you haven't [downloaded the initial demo project](https://github.com/sebivenlo/microservices-eventbus/archive/5aeaa8b0b936b6778d9b337cf7e577504354d417.zip) yet, do it now. In the package ```nl.fontys.demo``` create a new package, called ```services```. In this package, create a new Java class, called ```KitchenService```:
 
 {% highlight java %}
 package nl.fontys.demo.services;
