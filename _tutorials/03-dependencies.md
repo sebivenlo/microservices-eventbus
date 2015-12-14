@@ -47,7 +47,7 @@ Each event has a so called ```type``` as well as a list of arguments (optional).
 
 ### The event bus
 
-To use such events we need to distribute them. The distribution of events is done by a so called **Event Bus** handler. Mbassador itself provides an event bus implementation. Since we want
+To use such events we need to distribute them. The distribution of events is done by a so called **Event Bus** handler. *Mbassador* itself provides an event bus implementation. Since we want
 to ease the process we make it [Singleton](https://en.wikipedia.org/wiki/Singleton_pattern) and wrap it into a ```EventBus``` class:
 {% highlight java %}
 package nl.fontys.demo.events;
@@ -151,7 +151,7 @@ public class OrderService {
     }
 
     public void receiveSalary(float dollars) {
-        System.out.println("Order service received " + dollars + " sallary.");
+        System.out.println("Order service received " + dollars + " salary.");
     }
 
     public void deliverMeals() {
@@ -204,7 +204,7 @@ public class PaymentService {
     }
 
     public void payMeal(String meal, float ammount) {
-        System.out.println("Payment received for meal: " + meal + " for: "+ ammount +"$");
+        System.out.println("Payment received for meal: " + meal + " for: "+ amount +"$");
     }
 
     public void paySalary(float dollars) {
@@ -241,7 +241,7 @@ public class PaymentService {
     }
 
     public void payMeal(String meal, float ammount) {
-        System.out.println("Payment received for meal: " + meal + " for: "+ ammount +"$");
+        System.out.println("Payment received for meal: " + meal + " for: "+ amount +"$");
     }
 
     public void paySalary(float dollars) {
@@ -287,7 +287,7 @@ public class Application {
 
 The result is the same! From the API side of view those services are far easier to use now. Of course this example is very rough and simple, but imagine an architecture with hundreds of services. This way avoids dependency hassle and creates a clean structure.
 
-When you run the Demo you should get the following outout:
+When you run the Demo you should get the following output:
 {% highlight console %}
 Cooking meal Soup
 Cooking meal Bread
@@ -298,8 +298,8 @@ Deliver meal to customer: Bread
 Payment received for meal: Bread for: 1.0$
 Deliver meal to customer: Steak
 Payment received for meal: Steak for: 1.0$
-Kitchen service received 500.0 sallary.
-Order service received 500.0 sallary.
+Kitchen service received 500.0 salary.
+Order service received 500.0 salary.
 {% endhighlight %}
 
-Looks the same as before ? Congratulations you did everything right !
+Looks the same as before ? Congratulations you did everything right!

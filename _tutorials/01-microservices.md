@@ -20,21 +20,21 @@ But this approach imposes some problems:
 
 
 # What can we do against it
-A new popular aproach is the microservices pattern. Basically you defide your applications into several small interconnected services that all handle one part of your application. This style of developing Platforms is used by some of the biggest companys on the internet like Netflix, Amazon or Ebay. Every microservices exposes an API that is consumed by the other services if they need information from this service or want to interact with it.
+A new popular approach is the micro services pattern. Basically you devide your applications into several small interconnected services that all handle one part of your application. This style of developing Platforms is used by some of the biggest companies on the internet like Netflix, Amazon or Ebay. Every micro services exposes an API that is consumed by the other services if they need information from this service or want to interact with it.
 
 ![alt text](http://bits.citrusbyte.com/images/posts/2015-08-24-microservices-architecture.png "Microservice Application")
 [Imagesource](http://bits.citrusbyte.com/images/posts/2015-08-24-microservices-architecture.png)
 
-The Miroservice pattern significally impacts the way data is stored inside of the application. Instead of one big database that contains all data, each service has its own database, they can also have different databaseschema or database types. This therfore often results in some data dupplication, but its essential to ensure loose coupling.
+The micro service pattern significantly impacts the way data is stored inside of the application. Instead of one big database that contains all data, each service has its own database, they can also have different database schema or database types. This therefore often results in some data duplication, but its essential to ensure loose coupling.
 
-Microservices have a couple of really cool advantages:
+Micro services have a couple of really cool advantages:
 
 - The application is more modular, you can easily switch out technologies inside of a service.
-- It's easier to understand for individual developers, since each service has its well definded resposibllites and boundrys
-- Each service can be developed by an independete team
+- It's easier to understand for individual developers, since each service has its well defined responsibilities and boundaries
+- Each service can be developed by an independent team
 - Each service can be redeployed easily and often
-- Is perfectly fine for continues integration and continues develivery in combination with infrastructure automation tools
-- Easly scalable
+- Is perfectly fine for continues integration and continues delivery in combination with infrastructure automation tools
+- Easily scalable
 
 
 Since there are no silver bullets there are also drawbacks:
@@ -42,7 +42,7 @@ Since there are no silver bullets there are also drawbacks:
 - Increases complexity
 - Testing is more complex
 - Changes across multiple services are complex and need to be planned carefully
-- Depolyment is more complex, since you need to loadbalance the services or create an gateway through which the services are accesed
+- Deployment is more complex, since you need to load balance the services or create an gateway through which the services are accessed
 - Service discovery needs to solved, so each service knows where to reach the others
 
 # Next up: case study

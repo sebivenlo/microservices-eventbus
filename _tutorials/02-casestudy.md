@@ -17,7 +17,7 @@ package nl.fontys.demo.services;
 public class KitchenService {
 
     public void receiveSalary(float dollars) {
-        System.out.println("Kitchen service received " + dollars + " sallary.");
+        System.out.println("Kitchen service received " + dollars + " salary.");
     }
 
     public void cookMeal(String meal) {
@@ -98,7 +98,7 @@ public class KitchenService {
     }
 
     public void receiveSalary(float dollars) {
-        System.out.println("Kitchen service received " + dollars + " sallary.");
+        System.out.println("Kitchen service received " + dollars + " salary.");
     }
 
     public void cookMeal(String meal) {
@@ -116,7 +116,7 @@ public class KitchenService {
 {% endhighlight %}
 Now the ```KitchenService``` class also depends on the ```OrderService```
 
-The last step to complete our restaurant is to add the ```PaymentService``` to everything. The Payment service needs to get informed everytime an order is served. After the waiter served the order, the restaurant gets payed and the ```PaymentService``` pays our empolyees.
+The last step to complete our restaurant is to add the ```PaymentService``` to everything. The Payment service needs to get informed every time an order is served. After the waiter served the order, the restaurant gets payed and the ```PaymentService``` pays our employees.
 
 Lets first implement the ```PaymentService```:
 
@@ -134,20 +134,20 @@ public class PaymentService {
         this.kitchenService = kitchenService;
     }
     public void payMeal(String meal, float ammount) {
-        System.out.println("Payment received for meal: " + meal + " for: "+ ammount +"$");
+        System.out.println("Payment received for meal: " + meal + " for: "+ amount +"$");
         paySalary(ammount);
     }
 
     private void paySalary(float dollars) {
-        System.out.println("Paying Kitchen " + dollars + " sallary.");
+        System.out.println("Paying Kitchen " + dollars + " salary.");
         kitchenService.receiveSalary(dollars);
-        System.out.println("Paying Waiter " + dollars + " sallary.");
+        System.out.println("Paying Waiter " + dollars + " salary.");
         orderService.receiveSalary(dollars);
     }
 }
 {% endhighlight %}
 
-Now everytime an meal is delivered and payed, the kitchen and waiter get payed. This is a very simple implementation for demo purposes and doesn't reflect a real business workflow.
+Now every time an meal is delivered and payed, the kitchen and waiter get payed. This is a very simple implementation for demo purposes and doesn't reflect a real business workflow.
 
 ### Wrap everything together
 
@@ -187,15 +187,15 @@ Deliver meal to customer: Bread
 Payment received for meal: Bread for: 1.0$
 Deliver meal to customer: Steak
 Payment received for meal: Steak for: 1.0$
-Kitchen service received 500.0 sallary.
-Order service received 500.0 sallary.
+Kitchen service received 500.0 salary.
+Order service received 500.0 salary.
 {% endhighlight %}
 
 
 This looks good, doesn't it? Well, in fact here are some issues already with this example implementation above:
 
 * a lot of dependencies already: only 3 services and all must be setup correctly
-* what when adding new services to the application? We would need to rewrite all services to add compability
+* what when adding new services to the application? We would need to rewrite all services to add compatibility
 * the example above requires initialization ordering: when creating objects too late, ```NullPointerException``` may occur
 
 How to solve those issues? Take a look into the next chapter <a href="{{ "/tutorials/03-dependencies" | prepend: site.baseurl }}">here</a>!
