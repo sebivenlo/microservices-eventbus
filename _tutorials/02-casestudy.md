@@ -46,7 +46,7 @@ public class OrderService {
 
     private KitchenService kitchenService;
 
-    public OrderService(KitchenService kitchenService) {
+    public setup(KitchenService kitchenService) {
         this.kitchenService = kitchenService;
     }
 
@@ -93,7 +93,7 @@ public class KitchenService {
 
     private List<String> cookedMeals = new ArrayList<String>();
 
-    public KitchenService(OrderService orderService) {
+    public setup(OrderService orderService) {
         this.orderService = orderService;
     }
 
@@ -129,7 +129,7 @@ public class PaymentService {
 
     private KitchenSevice kitchenService;
 
-    public PaymentService(OrderService orderService, KitchenSevice kitchenService) {
+    public void setup(OrderService orderService, KitchenSevice kitchenService) {
         this.orderService = orderService;
         this.kitchenService = kitchenService;
     }
@@ -155,7 +155,7 @@ After we setup all services it is time to create our first application. This sim
 {% highlight java %}
 public class Application {
 
-    public static void main(String[] args) {        
+    public static void main(String[] args) {
         // Setup all services
         OrderService orderService = new OrderService();
         KitchenService kitchenService = new KitchenService();
@@ -183,4 +183,3 @@ This looks good, doesn't it? Well, in fact here are some issues already with thi
 * the example above requires initialization ordering: when creating objects too late, ```NullPointerException``` may occur
 
 How to solve those issues? Take a look into the next chapter <a href="{{ "/tutorials/03-dependencies" | prepend: site.baseurl }}">here</a>!
-
