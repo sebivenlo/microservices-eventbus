@@ -133,9 +133,9 @@ public class PaymentService {
         this.orderService = orderService;
         this.kitchenService = kitchenService;
     }
-    public void payMeal(String meal, float ammount) {
+    public void payMeal(String meal, float amount) {
         System.out.println("Payment received for meal: " + meal + " for: "+ amount +"$");
-        paySalary(ammount);
+        paySalary(amount);
     }
 
     private void paySalary(float dollars) {

@@ -203,7 +203,7 @@ public class PaymentService {
         }
     }
 
-    public void payMeal(String meal, float ammount) {
+    public void payMeal(String meal, float amount) {
         System.out.println("Payment received for meal: " + meal + " for: "+ amount +"$");
     }
 
@@ -240,7 +240,7 @@ public class PaymentService {
         }
     }
 
-    public void payMeal(String meal, float ammount) {
+    public void payMeal(String meal, float amount) {
         System.out.println("Payment received for meal: " + meal + " for: "+ amount +"$");
     }
 
