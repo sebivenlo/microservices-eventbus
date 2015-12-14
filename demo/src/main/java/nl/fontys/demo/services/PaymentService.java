@@ -11,13 +11,13 @@ import nl.fontys.demo.events.EventBus;
 import nl.fontys.demo.events.EventType;
 
 public class PaymentService {
-    
+
     private EventBus bus = EventBus.getInstance();
-    
+
     public PaymentService() {
         bus.subscribe(this);
     }
-    
+
     @Handler
     public void onEvent(Event event) {
         if (event.isTypeOf(EventType.MEAL_DELIVERED)) {
@@ -25,8 +25,8 @@ public class PaymentService {
         }
     }
 
-    public void payMeal(String meal, float ammount) {
-        System.out.println("Payment received for meal: " + meal + " for: "+ ammount +"$");
+    public void payMeal(String meal, float amount) {
+        System.out.println("Payment received for meal: " + meal + " for: "+ amount +"$");
     }
 
     public void paySalary(float dollars) {

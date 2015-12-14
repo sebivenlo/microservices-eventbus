@@ -13,13 +13,13 @@ public class KitchenService {
     public final int SEND_OUT_GAP = 3;
 
     private List<String> cookedMeals = new ArrayList<String>();
-    
+
     private EventBus bus = EventBus.getInstance();
-    
+
     public KitchenService() {
         bus.subscribe(this);
     }
-    
+
     @Handler
     public void onEvent(Event event) {
         if (event.isTypeOf(EventType.KITCHEN_SALARY_SENT)) {
@@ -30,7 +30,7 @@ public class KitchenService {
     }
 
     public void receiveSalary(float dollars) {
-        System.out.println("Kitchen service received " + dollars + " sallary.");
+        System.out.println("Kitchen service received " + dollars + " salary.");
     }
 
     public void cookMeal(String meal) {
