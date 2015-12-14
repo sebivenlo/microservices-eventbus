@@ -265,7 +265,7 @@ import nl.fontys.demo.services.PaymentService;
 
 public class Application {
 
-    public static void main(String[] args) {        
+    public static void main(String[] args) {
         // Setup all services
         OrderService orderService = new OrderService();
         KitchenService kitchenService = new KitchenService();
@@ -283,4 +283,23 @@ public class Application {
     }
 }
 {% endhighlight %}
+
+
 The result is the same! From the API side of view those services are far easier to use now. Of course this example is very rough and simple, but imagine an architecture with hundreds of services. This way avoids dependency hassle and creates a clean structure.
+
+When you run the Demo you should get the following outout:
+{% highlight console %}
+Cooking meal Soup
+Cooking meal Bread
+Cooking meal Steak
+Deliver meal to customer: Soup
+Payment received for meal: Soup for: 1.0$
+Deliver meal to customer: Bread
+Payment received for meal: Bread for: 1.0$
+Deliver meal to customer: Steak
+Payment received for meal: Steak for: 1.0$
+Kitchen service received 500.0 sallary.
+Order service received 500.0 sallary.
+{% endhighlight %}
+
+Looks the same as before ? Congratulations you did everything right !

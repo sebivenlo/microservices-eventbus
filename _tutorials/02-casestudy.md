@@ -176,6 +176,22 @@ public class Application {
     }
 }
 {% endhighlight %}
+When you run it now you should see :
+{% highlight console %}
+Cooking meal Soup
+Cooking meal Bread
+Cooking meal Steak
+Deliver meal to customer: Soup
+Payment received for meal: Soup for: 1.0$
+Deliver meal to customer: Bread
+Payment received for meal: Bread for: 1.0$
+Deliver meal to customer: Steak
+Payment received for meal: Steak for: 1.0$
+Kitchen service received 500.0 sallary.
+Order service received 500.0 sallary.
+{% endhighlight %}
+
+
 This looks good, doesn't it? Well, in fact here are some issues already with this example implementation above:
 
 * a lot of dependencies already: only 3 services and all must be setup correctly
