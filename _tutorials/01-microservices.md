@@ -20,14 +20,14 @@ But this approach imposes some problems:
 
 
 # What can we do against it
-A new popular approach is the micro services pattern. Basically you devide your applications into several small interconnected services that all handle one part of your application. This style of developing Platforms is used by some of the biggest companies on the internet like Netflix, Amazon or Ebay. Every micro services exposes an API that is consumed by the other services if they need information from this service or want to interact with it.
+A new popular approach is the microservices pattern. Basically you devide your applications into several small interconnected services that all handle one part of your application. This style of developing Platforms is used by some of the biggest companies on the internet like Netflix, Amazon or Ebay. Every microservices exposes an API that is consumed by the other services if they need information from this service or want to interact with it.
 
 ![alt text](http://bits.citrusbyte.com/images/posts/2015-08-24-microservices-architecture.png "Microservice Application")
 [Imagesource](http://bits.citrusbyte.com/images/posts/2015-08-24-microservices-architecture.png)
 
 The micro service pattern significantly impacts the way data is stored inside of the application. Instead of one big database that contains all data, each service has its own database, they can also have different database schema or database types. This therefore often results in some data duplication, but its essential to ensure loose coupling.
 
-Micro services have a couple of really cool advantages:
+Microservices have a couple of really cool advantages:
 
 - The application is more modular, you can easily switch out technologies inside of a service.
 - It's easier to understand for individual developers, since each service has its well defined responsibilities and boundaries

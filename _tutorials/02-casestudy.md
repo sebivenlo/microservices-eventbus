@@ -1,7 +1,7 @@
 ---
 title: A case study - Restaurant
 ---
-Imagine for a second you are a restaurant owner and you want to improve your processes by applying micro services. Such restaurant could be managed in the following way:
+Imagine for a second you are a restaurant owner and you want to improve your processes by applying microservices. Such restaurant could be managed in the following way:
 
 <img src="{{ "/img/restaurant-setup.png" | prepend: site.baseurl }}" alt="restaurant"/>
 
